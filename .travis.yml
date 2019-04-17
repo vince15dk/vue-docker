@@ -8,3 +8,17 @@ before_install:
 
 script:
   - docker run vince15dk/vue-docker npm run lint -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "vue-docker"
+  env: "VueDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-203713847121"
+  bucket_path: "vue-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"  
+

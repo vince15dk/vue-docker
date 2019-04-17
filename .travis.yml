@@ -1,0 +1,10 @@
+sudo: required
+services:
+  - docker
+
+
+before_install:
+  - docker build -t vince15dk/vue-docker -f Dockerfile.dev .
+
+script:
+  - docker run vince15dk/vue-docker npm run lint -- --coverage
